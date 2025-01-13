@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TerroscapeApp;
+namespace TerroscapeApp.Database;
 
 public partial class Map
 {
@@ -10,4 +10,6 @@ public partial class Map
     public string Name { get; set; } = null!;
 
     public int LocationsNum { get; set; }
+
+    public virtual ICollection<Round> Rounds { get; set; } = new List<Round>();
 }
