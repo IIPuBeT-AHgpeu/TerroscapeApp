@@ -54,6 +54,11 @@ public partial class TerroscapeStatsContext : DbContext
             entity.Property(e => e.SecondSkill)
                 .HasMaxLength(50)
                 .HasColumnName("second_skill");
+
+            entity.Property(e => e.GameName)
+                .HasColumnName("game_name")
+                .HasColumnType("game_name_enum")
+                .HasDefaultValue(DBEnums.GameNameEnum.Base);
         });
 
         modelBuilder.Entity<Killer>(entity =>
@@ -172,6 +177,15 @@ public partial class TerroscapeStatsContext : DbContext
             entity.HasOne(d => d.ThirdSurvivorNavigation).WithMany(p => p.RoundThirdSurvivorNavigations)
                 .HasForeignKey(d => d.ThirdSurvivor)
                 .HasConstraintName("round_third_survivor_fk");
+
+            entity.Property(e => e.HowSurvivorsWin)
+                .HasColumnName("how_survivors_win")
+                .HasColumnType("survivor_win_enum")
+                .HasDefaultValue(null);
+            entity.Property(e => e.HowKillerWin)
+                .HasColumnName("how_killer_win")
+                .HasColumnType("killer_win_enum")
+                .HasDefaultValue(null);
         });
 
         modelBuilder.Entity<Survivor>(entity =>
@@ -193,6 +207,11 @@ public partial class TerroscapeStatsContext : DbContext
             entity.HasOne(d => d.Player).WithMany(p => p.Survivors)
                 .HasForeignKey(d => d.PlayerId)
                 .HasConstraintName("survivor_player_fk");
+
+            entity.Property(e => e.State)
+                .HasColumnName("state")
+                .HasColumnType("survivor_state_enum")
+                .HasDefaultValue(DBEnums.SurvivorStateEnum.Alive);
         });
 
         OnModelCreatingPartial(modelBuilder);

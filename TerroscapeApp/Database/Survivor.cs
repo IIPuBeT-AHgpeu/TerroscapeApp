@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TerroscapeApp.Models;
 
 namespace TerroscapeApp.Database;
 
@@ -10,6 +11,8 @@ public partial class Survivor
     public int? PlayerId { get; set; }
 
     public int AvatarId { get; set; }
+
+    public DBEnums.SurvivorStateEnum State { get; set; }
 
     public virtual Avatar Avatar { get; set; } = null!;
 

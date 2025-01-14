@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TerroscapeApp.Models;
 
 namespace TerroscapeApp.Database;
 
@@ -34,6 +35,10 @@ public partial class Round
     public bool DoneRadio { get; set; }
 
     public bool? DonePlan { get; set; }
+
+    public DBEnums.SurvivorWinEnum? HowSurvivorsWin { get; set; }
+
+    public DBEnums.KillerWinEnum? HowKillerWin { get; set; }
 
     public virtual Survivor FirstSurvivorNavigation { get; set; } = null!;
 
