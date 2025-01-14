@@ -16,7 +16,7 @@
                 Имя
             </th>
             <th>
-                Никнейм
+                Известен как
             </th>
             <th></th>
         </tr>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Login)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }
