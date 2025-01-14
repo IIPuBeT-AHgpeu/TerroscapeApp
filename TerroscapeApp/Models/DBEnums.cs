@@ -4,33 +4,33 @@
     {
         public enum GameNameEnum
         {
-            Base = 0,
-            Feral_instincts = 1,
-            Amorphous_peril = 2,
-            Lethal_immortals = 3,
-            Putrefied_enmity = 4
+            Base,
+            FeralInstincts,
+            AmorphousPeril,
+            LethalImmortals,
+            PutrefiedEnmity
         }
 
         public enum KillerWinEnum
         {
-            Murder = 0,
-            Time = 1,
-            Other = 2
+            Murder,
+            Time,
+            Other
         }
 
         public enum SurvivorWinEnum
         {
-            Escape = 0,
-            Police = 1,
-            Plan = 2,
-            Other = 3
+            Escape,
+            Police,
+            Plan,
+            Other
         }
 
         public enum SurvivorStateEnum
         {
-            Alive = 0,
-            Injured = 1,
-            Dead = 2
+            Alive,
+            Injured,
+            Dead
         }
     }
 }

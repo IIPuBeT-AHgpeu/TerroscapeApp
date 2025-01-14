@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using TerroscapeApp.Models;
 
 namespace TerroscapeApp.Database;
 
@@ -27,17 +28,13 @@ public partial class TerroscapeStatsContext : DbContext
 
     public virtual DbSet<Survivor> Survivors { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=terroscape_stats;Username=postgres;Password=root");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .HasPostgresEnum("game_name", new[] { "base", "feral_instincts", "amorphous_peril", "lethal_immortals", "putrefied_enmity" })
-            .HasPostgresEnum("killer_win", new[] { "murder", "time", "other" })
-            .HasPostgresEnum("survivor_state", new[] { "alive", "injured", "dead" })
-            .HasPostgresEnum("survivor_win", new[] { "escape", "police", "plan", "other" });
+            .HasPostgresEnum("game_name_enum", ["base", "feral_instincts", "amorphous_peril", "lethal_immortals", "putrefied_enmity"])
+            .HasPostgresEnum("killer_win_enum", ["murder", "time", "other"])
+            .HasPostgresEnum("survivor_state_enum", ["alive", "injured", "dead"])
+            .HasPostgresEnum("survivor_win_enum", ["escape", "police", "plan", "other"]);
 
         modelBuilder.Entity<Avatar>(entity =>
         {
@@ -72,6 +69,11 @@ public partial class TerroscapeStatsContext : DbContext
                 .HasMaxLength(20)
                 .HasColumnName("name");
             entity.Property(e => e.Strength).HasColumnName("strength");
+
+            entity.Property(e => e.GameName)
+                .HasColumnName("game_name")
+                .HasColumnType("game_name_enum")
+                .HasDefaultValue(DBEnums.GameNameEnum.Base);
         });
 
         modelBuilder.Entity<Map>(entity =>

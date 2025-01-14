@@ -1,7 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using TerroscapeApp.Database;
+using TerroscapeApp.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<TerroscapeStatsContext>(options => 
+    options.UseNpgsql(
+        connectionString, 
+        o => {
+                o.MapEnum<DBEnums.GameNameEnum>("game_name_enum");
+                o.MapEnum<DBEnums.SurvivorStateEnum>("survivor_state_enum");
+                o.MapEnum<DBEnums.SurvivorWinEnum>("survivor_win_enum");
+                o.MapEnum<DBEnums.KillerWinEnum>("killer_win_enum");
+             }
+        ));
 
 var app = builder.Build();
 
