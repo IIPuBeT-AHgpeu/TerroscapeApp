@@ -1,0 +1,43 @@
+﻿@model TerroscapeApp.Database.Avatar
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Добавление новой жертвы</h1>
+
+<h4>Жертва:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Имя:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstSkill" class="control-label">Навык 1:</label>
+                <input asp-for="FirstSkill" class="form-control" />
+                <span asp-validation-for="FirstSkill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondSkill" class="control-label">Навык 2 (если есть):</label>
+                <input asp-for="SecondSkill" class="form-control" />
+                <span asp-validation-for="SecondSkill" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top: 10px">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться к списку жертв</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

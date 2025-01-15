@@ -14,7 +14,7 @@ public partial class Avatar
 
     public string? SecondSkill { get; set; }
 
-    public DBEnums.GameNameEnum GameName { get; set; }
+    public DBEnums.GameNameEnum GameName { get; set; } = DBEnums.GameNameEnum.Base;
 
     public virtual ICollection<Survivor> Survivors { get; set; } = new List<Survivor>();
 }

@@ -12,7 +12,7 @@ public partial class Survivor
 
     public int AvatarId { get; set; }
 
-    public DBEnums.SurvivorStateEnum State { get; set; }
+    public DBEnums.SurvivorStateEnum State { get; set; } = DBEnums.SurvivorStateEnum.Alive;
 
     public virtual Avatar Avatar { get; set; } = null!;
 

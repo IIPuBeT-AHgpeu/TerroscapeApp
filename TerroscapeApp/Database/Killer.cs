@@ -12,7 +12,7 @@ public partial class Killer
 
     public int Strength { get; set; }
 
-    public DBEnums.GameNameEnum GameName { get; set; }
+    public DBEnums.GameNameEnum GameName { get; set; } = DBEnums.GameNameEnum.Base;
 
     public virtual ICollection<Round> Rounds { get; set; } = new List<Round>();
 }
