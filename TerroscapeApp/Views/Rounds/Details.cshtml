@@ -1,0 +1,114 @@
+﻿@model TerroscapeApp.Database.Round
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Round</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KillerBoostNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KillerBoostNum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KillerWin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KillerWin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KillerLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KillerLevel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SurvivorBoostNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SurvivorBoostNum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HasPlans)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HasPlans)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GotKeys)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GotKeys)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DoneRadio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DoneRadio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DonePlan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DonePlan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HowSurvivorsWin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HowSurvivorsWin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HowKillerWin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HowKillerWin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstSurvivorNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstSurvivorNavigation.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Killer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Killer.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KillerPlayer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KillerPlayer.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Map)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Map.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SecondSurvivorNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SecondSurvivorNavigation.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThirdSurvivorNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThirdSurvivorNavigation.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

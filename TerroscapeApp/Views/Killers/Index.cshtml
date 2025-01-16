@@ -1,22 +1,25 @@
-﻿@model IEnumerable<TerroscapeApp.Database.Player>
+﻿@model IEnumerable<TerroscapeApp.Database.Killer>
 
 @{
-    ViewData["Title"] = "Игроки";
+    ViewData["Title"] = "Убийцы";
 }
 
-<h1>Игроки</h1>
+<h1>Убийцы</h1>
 
 <p>
-    <a asp-action="Create">Добавить нового</a>
+    <a asp-action="Create">Добавить новую убийцу</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Имя
+                Название
             </th>
             <th>
-                Известен как
+                Сила
+            </th>
+            <th>
+                Версия игры
             </th>
             <th></th>
         </tr>
@@ -28,7 +31,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Login)
+                @Html.DisplayFor(modelItem => item.Strength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |

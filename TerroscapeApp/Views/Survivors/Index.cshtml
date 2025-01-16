@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TerroscapeApp.Database.Survivor>
+
+@{
+    ViewData["Title"] = "Выжившие";
+}
+
+<h1>Выжившие</h1>
+
+<p>
+    <a asp-action="Create">Добавить нового</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Состояние
+            </th>
+            <th>
+                ID жертвы
+            </th>
+            <th>
+                Id игрока
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avatar.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player.Id)
+            </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

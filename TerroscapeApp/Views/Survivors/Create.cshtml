@@ -1,0 +1,34 @@
+﻿@model TerroscapeApp.Database.Survivor
+
+@{
+    ViewData["Title"] = "Добавление нового выжившего";
+}
+
+<h1>Добавление нового выжившего</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PlayerId" class="control-label">ID игрока</label>
+                <select asp-for="PlayerId" class ="form-control" asp-items="ViewBag.PlayerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvatarId" class="control-label">ID жертвы</label>
+                <select asp-for="AvatarId" class ="form-control" asp-items="ViewBag.AvatarId"></select>
+            </div>
+            <div class="form-group" style="padding-top: 10px">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться к списку выживших</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

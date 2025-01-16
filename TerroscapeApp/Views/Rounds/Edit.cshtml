@@ -1,0 +1,109 @@
+﻿@model TerroscapeApp.Database.Round
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Round</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="MapId" class="control-label"></label>
+                <select asp-for="MapId" class="form-control" asp-items="ViewBag.MapId"></select>
+                <span asp-validation-for="MapId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KillerId" class="control-label"></label>
+                <select asp-for="KillerId" class="form-control" asp-items="ViewBag.KillerId"></select>
+                <span asp-validation-for="KillerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KillerPlayerId" class="control-label"></label>
+                <select asp-for="KillerPlayerId" class="form-control" asp-items="ViewBag.KillerPlayerId"></select>
+                <span asp-validation-for="KillerPlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KillerBoostNum" class="control-label"></label>
+                <input asp-for="KillerBoostNum" class="form-control" />
+                <span asp-validation-for="KillerBoostNum" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="KillerWin" /> @Html.DisplayNameFor(model => model.KillerWin)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="KillerLevel" class="control-label"></label>
+                <input asp-for="KillerLevel" class="form-control" />
+                <span asp-validation-for="KillerLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstSurvivor" class="control-label"></label>
+                <select asp-for="FirstSurvivor" class="form-control" asp-items="ViewBag.FirstSurvivor"></select>
+                <span asp-validation-for="FirstSurvivor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondSurvivor" class="control-label"></label>
+                <select asp-for="SecondSurvivor" class="form-control" asp-items="ViewBag.SecondSurvivor"></select>
+                <span asp-validation-for="SecondSurvivor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdSurvivor" class="control-label"></label>
+                <select asp-for="ThirdSurvivor" class="form-control" asp-items="ViewBag.ThirdSurvivor"></select>
+                <span asp-validation-for="ThirdSurvivor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SurvivorBoostNum" class="control-label"></label>
+                <input asp-for="SurvivorBoostNum" class="form-control" />
+                <span asp-validation-for="SurvivorBoostNum" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasPlans" /> @Html.DisplayNameFor(model => model.HasPlans)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GotKeys" /> @Html.DisplayNameFor(model => model.GotKeys)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DoneRadio" /> @Html.DisplayNameFor(model => model.DoneRadio)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DonePlan" class="control-label"></label>
+                <input asp-for="DonePlan" class="form-control" />
+                <span asp-validation-for="DonePlan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HowSurvivorsWin" class="control-label"></label>
+                <input asp-for="HowSurvivorsWin" class="form-control" />
+                <span asp-validation-for="HowSurvivorsWin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HowKillerWin" class="control-label"></label>
+                <input asp-for="HowKillerWin" class="form-control" />
+                <span asp-validation-for="HowKillerWin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
