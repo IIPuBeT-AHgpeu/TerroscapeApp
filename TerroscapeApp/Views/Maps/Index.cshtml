@@ -1,22 +1,22 @@
-﻿@model IEnumerable<TerroscapeApp.Database.Player>
+﻿@model IEnumerable<TerroscapeApp.Database.Map>
 
 @{
-    ViewData["Title"] = "Игроки";
+    ViewData["Title"] = "Карты";
 }
 
-<h1>Игроки</h1>
+<h1>Карты</h1>
 
 <p>
-    <a asp-action="Create">Добавить нового</a>
+    <a asp-action="Create">Добавить новую карту</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Имя
+               Название
             </th>
             <th>
-                Известен как
+                Количество локаций
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Login)
+                @Html.DisplayFor(modelItem => item.LocationsNum)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |

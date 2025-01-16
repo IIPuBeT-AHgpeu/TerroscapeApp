@@ -1,28 +1,28 @@
 ﻿@model IEnumerable<TerroscapeApp.Database.Avatar>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Жертвы";
 }
 
-<h1>Index</h1>
+<h1>Жертвы</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить новую жертву</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               Имя:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstSkill)
+                Навык 1
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SecondSkill)
+                Навык 2(если есть)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GameName)
+                Версия игры
             </th>
             <th></th>
         </tr>
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.GameName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }

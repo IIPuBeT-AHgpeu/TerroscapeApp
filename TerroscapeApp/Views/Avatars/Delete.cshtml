@@ -1,36 +1,33 @@
 ﻿@model TerroscapeApp.Database.Avatar
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Удаление жертвы";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Вы уверены, что хотите удалить жертву c именем "@Html.DisplayFor(model => model.Name)"?</h3>
+<hr />
 <div>
-    <h4>Avatar</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            Имя:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstSkill)
+            Навык 1:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstSkill)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SecondSkill)
+            Навык 2:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SecondSkill)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GameName)
+            Версия игры:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.GameName)
@@ -39,7 +36,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться к списку жертв</a>
     </form>
 </div>

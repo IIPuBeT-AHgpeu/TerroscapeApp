@@ -1,0 +1,138 @@
+﻿@model IEnumerable<TerroscapeApp.Database.Round>
+
+@{
+    ViewData["Title"] = "Партии";
+}
+
+<h1>Партии</h1>
+
+<p>
+    <a asp-action="Create">Добавить новую партию</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Количество усилителей убийцы
+            </th>
+            <th>
+                Победа убийцы?
+            </th>
+            <th>
+                Уровень убийцы
+            </th>
+            <th>
+                Количество усилителей выживших
+            </th>
+            <th>
+                Есть ли план?
+            </th>
+            <th>
+                Все ключи собраны?
+            </th>
+            <th>
+                Радио починено?
+            </th>
+            <th>
+                Выполнен план?
+            </th>
+            <th>
+                Как победили выжившие?
+            </th>
+            <th>
+                Как победил убийца?
+            </th>
+            <th>
+                Имя первой жертвы
+            </th>
+            <th>
+                Имя первого игрока
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Killer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KillerPlayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Map)
+            </th>
+            <th>
+                Имя второго выжившего
+            </th>
+            <th>
+                Имя третьего выжившего
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KillerBoostNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KillerWin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KillerLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurvivorBoostNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasPlans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GotKeys)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoneRadio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonePlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HowSurvivorsWin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HowKillerWin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstSurvivorNavigation.Avatar.Name)
+            </td>
+            <td>
+                @if(item.FirstSurvivorNavigation.Player == null)
+                {
+                    Html.Display("Bot");                    
+                }
+                else
+                {
+                    Html.DisplayFor(modelItem => item.FirstSurvivorNavigation.Player.Name);
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Killer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KillerPlayer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Map.Id)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.SecondSurvivorNavigation.Avatar.Name)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ThirdSurvivorNavigation.Avatar.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
