@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TerroscapeApp.Database.Survivor>
+﻿@using TerroscapeApp.Service
+@model IEnumerable<TerroscapeApp.Database.Survivor>
 
 @{
     ViewData["Title"] = "Выжившие";
@@ -16,10 +17,10 @@
                 Состояние
             </th>
             <th>
-                ID жертвы
+                Жертва
             </th>
             <th>
-                Id игрока
+                Игрок
             </th>
             <th></th>
         </tr>
@@ -28,13 +29,23 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.State)
+                    @{
+                        var t1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.State);
+                        if (t1 != null)
+                            @Html.Raw(t1)
+                        else
+                            @Html.Raw("Неизвестное значение")
+                    }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Avatar.Id)
+                    @Html.DisplayFor(model => item.Avatar.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player.Id)
+                    @if (item.Player != null)
+                        @Html.DisplayFor(model => item.Player!.Name)
+                    else
+                        @Html.Raw("BOT")
+
             </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |

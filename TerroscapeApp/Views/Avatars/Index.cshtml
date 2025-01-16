@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TerroscapeApp.Database.Avatar>
+﻿@using TerroscapeApp.Service
+@model IEnumerable<TerroscapeApp.Database.Avatar>
 
 @{
     ViewData["Title"] = "Жертвы";
@@ -40,7 +41,11 @@
                 @Html.DisplayFor(modelItem => item.SecondSkill)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GameName)
+                    @{
+                        var t1 = EnumsTranslation.GameNameTranslation.GetValueOrDefault(item.GameName);
+                        if (t1 != null) @Html.Raw(t1)
+                        else @Html.Raw("Неизвестное значение")
+                    }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |

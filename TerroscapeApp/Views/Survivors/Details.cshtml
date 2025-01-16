@@ -1,4 +1,5 @@
-﻿@model TerroscapeApp.Database.Survivor
+﻿@using TerroscapeApp.Service
+@model TerroscapeApp.Database.Survivor
 
 @{
     ViewData["Title"] = "Подробности о выжившем";
@@ -10,22 +11,31 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            Состояние
+            Состояние:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
+            @{
+                var t1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(Model.State);
+                if (t1 != null)
+                    @Html.Raw(t1)
+                else
+                    @Html.Raw("Неизвестное значение")
+            }
         </dd>
         <dt class = "col-sm-2">
-           ID жертвы
+            Жертва:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Avatar.Id)
+            @Html.DisplayFor(model => model.Avatar.Name)
         </dd>
         <dt class = "col-sm-2">
-            ID игрока
+            Имя игрока:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Player.Id)
+            @if (Model.Player != null)
+                @Html.DisplayFor(model => model.Player!.Name)
+            else
+                @Html.Raw("BOT")
         </dd>
     </dl>
 </div>

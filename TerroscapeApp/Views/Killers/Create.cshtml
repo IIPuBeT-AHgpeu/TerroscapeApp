@@ -1,4 +1,5 @@
-﻿@model TerroscapeApp.Database.Killer
+﻿@using TerroscapeApp.Service
+@model TerroscapeApp.Database.Killer
 
 @{
     ViewData["Title"] = "Добавление нового убийцы";
@@ -19,6 +20,11 @@
                 <label asp-for="Strength" class="control-label">Сила</label>
                 <input asp-for="Strength" class="form-control" />
                 <span asp-validation-for="Strength" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top: 10px">
+                <label asp-for="GameName" class="control-label">Версия игры:</label>
+                @Html.DropDownListFor(e => e.GameName, new SelectList(EnumsTranslation.GameNameTranslation, "Key", "Value"))
+                <span asp-validation-for="GameName" class="text-danger"></span>
             </div>
             <div class="form-group" style="padding-top: 10px">
                 <input type="submit" value="Добавить" class="btn btn-primary" />

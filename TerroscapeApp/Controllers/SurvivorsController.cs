@@ -48,8 +48,8 @@ namespace TerroscapeApp.Controllers
         // GET: Survivors/Create
         public IActionResult Create()
         {
-            ViewData["AvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
-            ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Id");
+            ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace TerroscapeApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AvatarId"] = new SelectList(_context.Avatars, "Id", "Id", survivor.AvatarId);
-            ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Id", survivor.PlayerId);
+            ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name", survivor.AvatarId);
+            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name", survivor.PlayerId);
             return View(survivor);
         }
 
@@ -84,8 +84,8 @@ namespace TerroscapeApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["AvatarId"] = new SelectList(_context.Avatars, "Id", "Id", survivor.AvatarId);
-            ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Id", survivor.PlayerId);
+            ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name", survivor.AvatarId);
+            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name", survivor.PlayerId);
             return View(survivor);
         }
 
@@ -121,8 +121,8 @@ namespace TerroscapeApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AvatarId"] = new SelectList(_context.Avatars, "Id", "Id", survivor.AvatarId);
-            ViewData["PlayerId"] = new SelectList(_context.Players, "Id", "Id", survivor.PlayerId);
+            ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name", survivor.AvatarId);
+            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name", survivor.PlayerId);
             return View(survivor);
         }
 
