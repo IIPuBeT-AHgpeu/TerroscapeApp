@@ -48,6 +48,14 @@ namespace TerroscapeApp.Controllers
             return View();
         }
 
+        /*
+            <div class="form-group">
+                <label asp-for="GameName" class="control-label">Версия игры:</label>
+                @Html.DropDownListFor(e => e.GameName, new SelectList(EnumsTranslation.GameNameTranslation, "Key", "Value"))
+                <span asp-validation-for="GameName" class="text-danger"></span>
+            </div>
+         */
+
         // POST: Avatars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
