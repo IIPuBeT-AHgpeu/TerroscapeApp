@@ -48,8 +48,11 @@ namespace TerroscapeApp.Controllers
         // GET: Survivors/Create
         public IActionResult Create()
         {
+            var players = from p in _context.Players select new { Id = p.Id, Name = p.Name };
+            var pl = players.ToList(); pl.Add(new { Id = 0, Name = "BOT" });
+
             ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name");
-            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name");
+            ViewData["Players"] = new SelectList(pl, "Id", "Name");
             return View();
         }
 
@@ -60,15 +63,24 @@ namespace TerroscapeApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PlayerId,AvatarId,State")] Survivor survivor)
         {
-            if (ModelState.IsValid)
+            if (survivor != null)
             {
-                _context.Add(survivor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var avatar = _context.Avatars.FirstOrDefault(a => a.Id == survivor.AvatarId);
+                if (avatar != null)
+                {
+                    if (survivor.PlayerId == 0) survivor.PlayerId = null;
+
+                    _context.Add(survivor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name", survivor.AvatarId);
-            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name", survivor.PlayerId);
-            return View(survivor);
+            var players = from p in _context.Players select new { Id = p.Id, Name = p.Name };
+            var pl = players.ToList(); pl.Add(new { Id = 0, Name = "BOT" });
+
+            ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["Players"] = new SelectList(pl, "Id", "Name");
+            return View(survivor);           
         }
 
         // GET: Survivors/Edit/5
@@ -84,8 +96,14 @@ namespace TerroscapeApp.Controllers
             {
                 return NotFound();
             }
+
+            var players = from p in _context.Players select new { Id = p.Id, Name = p.Name };
+            var pl = players.ToList(); pl.Add(new { Id = 0, Name = "BOT" });
+
             ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name", survivor.AvatarId);
-            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name", survivor.PlayerId);
+            if (survivor.PlayerId != null && survivor.PlayerId > 0) ViewData["Players"] = new SelectList(pl, "Id", "Name", survivor.PlayerId);
+            else ViewData["Players"] = new SelectList(pl, "Id", "Name", 0);
+
             return View(survivor);
         }
 
@@ -105,6 +123,8 @@ namespace TerroscapeApp.Controllers
             {
                 try
                 {
+                    if (survivor.PlayerId == 0) survivor.PlayerId = null;
+
                     _context.Update(survivor);
                     await _context.SaveChangesAsync();
                 }
@@ -121,8 +141,14 @@ namespace TerroscapeApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            var players = from p in _context.Players select new { Id = p.Id, Name = p.Name };
+            var pl = players.ToList(); pl.Add(new { Id = 0, Name = "BOT" });
+
             ViewData["Avatars"] = new SelectList(_context.Avatars, "Id", "Name", survivor.AvatarId);
-            ViewData["Players"] = new SelectList(_context.Players, "Id", "Name", survivor.PlayerId);
+            if (survivor.PlayerId != null && survivor.PlayerId > 0) ViewData["Players"] = new SelectList(pl, "Id", "Name", survivor.PlayerId);
+            else ViewData["Players"] = new SelectList(pl, "Id", "Name", 0);
+
             return View(survivor);
         }
 
