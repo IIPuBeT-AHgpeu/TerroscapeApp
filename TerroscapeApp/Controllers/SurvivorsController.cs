@@ -119,7 +119,7 @@ namespace TerroscapeApp.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (survivor != null)
             {
                 try
                 {
