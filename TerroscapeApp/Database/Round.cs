@@ -30,7 +30,6 @@ public partial class Round
 
     public bool? DonePlan { get; set; }
 
-
     public int FirstPlayerId { get; set; }
     public int FirstAvatarId { get; set; }
     public DBEnums.SurvivorStateEnum FisrtState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
@@ -42,7 +41,6 @@ public partial class Round
     public int? ThirdPlayerId { get; set; }
     public int ThirdAvatarId { get; set; }
     public DBEnums.SurvivorStateEnum ThirdState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
-
 
     public DBEnums.SurvivorWinEnum? HowSurvivorsWin { get; set; }
 

@@ -21,7 +21,17 @@ namespace TerroscapeApp.Controllers
         // GET: Rounds
         public async Task<IActionResult> Index()
         {
-            var terroscapeStatsContext = _context.Rounds.Include(r => r.FirstAvatar).Include(r => r.FirstPlayer).Include(r => r.Killer).Include(r => r.KillerPlayer).Include(r => r.Map).Include(r => r.SecondAvatar).Include(r => r.SecondPlayer).Include(r => r.ThirdAvatar).Include(r => r.ThirdPlayer);
+            var terroscapeStatsContext = _context.Rounds
+                .Include(r => r.FirstAvatar)
+                .Include(r => r.FirstPlayer)
+                .Include(r => r.Killer)
+                .Include(r => r.KillerPlayer)
+                .Include(r => r.Map)
+                .Include(r => r.SecondAvatar)
+                .Include(r => r.SecondPlayer)
+                .Include(r => r.ThirdAvatar)
+                .Include(r => r.ThirdPlayer);
+
             return View(await terroscapeStatsContext.ToListAsync());
         }
 

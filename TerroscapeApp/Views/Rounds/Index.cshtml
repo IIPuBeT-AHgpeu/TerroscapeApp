@@ -1,165 +1,148 @@
-﻿@model IEnumerable<TerroscapeApp.Database.Round>
+﻿@using TerroscapeApp.Service
+@model IEnumerable<TerroscapeApp.Database.Round>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Партии";
 }
 
-<h1>Index</h1>
+<h1>Партии</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить новую партию</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.KillerBoostNum)
+                Дата
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KillerWin)
+                Игрок за Убийцу
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KillerLevel)
+                Персонаж Убийцы (уровень)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SurvivorBoostNum)
+                Жертва 1
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HasPlans)
+                Жертва 2
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GotKeys)
+                Жертва 3
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DoneRadio)
+                Победитель
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DonePlan)
+                Способ победы
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FisrtState)
+                Карта
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SecondState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThirdState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HowSurvivorsWin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HowKillerWin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Killer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KillerPlayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Map)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstPlayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SecondPlayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThirdPlayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstAvatar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SecondAvatar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThirdAvatar)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @{
+                        if (item.Date.HasValue)
+                            @Html.Raw("Не определено")
+                        else
+                            @Html.DisplayFor(o => item.Date)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(t => item.KillerPlayer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(t => item.Killer.Name) (@Html.DisplayFor(t => item.KillerLevel))
+                </td>
+                <td>
+                    @Html.DisplayFor(t => item.FirstPlayer.Name) играл за жертву @Html.DisplayFor(t => item.FirstAvatar.Name) - @{
+                        var s1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.FisrtState);
+                        if (s1 != null) Html.Raw(s1);
+                        else Html.Raw("Неизвестное значение");
+                    }
+                </td>
+                <td>
+                    @{
+                        var s2 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.SecondState);
+                        if (item.SecondPlayer == null)
+                        {
+                            Html.Raw("Жертва ");
+                            Html.DisplayFor(t => item.SecondAvatar.Name);
+                            Html.Raw(", состояние - ");
+                        }
+                        else
+                        {
+                            Html.DisplayFor(t => item.SecondPlayer.Name);
+                            Html.Raw(" играл за жертву ");
+                            Html.DisplayFor(t => item.SecondAvatar.Name);
+                            Html.Raw(" - ");
+                        }
+
+                        if (s2 != null) Html.Raw(s2);
+                        else Html.Raw("Неизвестное значение");
+                    }
+                </td>
+                <td>
+                    @{
+                        var s3 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.ThirdState);
+                        if (item.ThirdPlayer == null)
+                        {
+                            Html.Raw("Жертва ");
+                            Html.DisplayFor(t => item.ThirdAvatar.Name);
+                            Html.Raw(", состояние - ");
+                        }
+                        else
+                        {
+                            Html.DisplayFor(t => item.ThirdPlayer.Name);
+                            Html.Raw(" играл за жертву ");
+                            Html.DisplayFor(t => item.ThirdAvatar.Name);
+                            Html.Raw(" - ");
+                        }
+
+                        if (s2 != null) Html.Raw(s2);
+                        else Html.Raw("Неизвестное значение");
+                    }
+                </td>
+                <td>
+                    @{
+                        if (item.KillerWin) Html.Raw("Убийца");
+                        else Html.Raw("Жертвы");
+                    }
+                </td>
+                <td>
+                    @{
+                        string w = "Неизвестное значение";
+                        if (item.KillerWin)
+                        {
+                            if (item.HowKillerWin != null)
+                            {
+                                var kw = EnumsTranslation.KillerWinTranslation.GetValueOrDefault(item.HowKillerWin!);
+                                if (kw != null) w = kw;
+                            }
+                        }
+                        else
+                        {
+                            if (item.HowSurvivorsWin != null)
+                            {
+                                var sw = EnumsTranslation.SurvivorsWinTranslation.GetValueOrDefault(item.HowSurvivorsWin!);
+                                if (sw != null) w = sw;
+                            }
+                        }
+                        @Html.Raw(w);
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(t => item.Map.Name)
+                </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KillerBoostNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KillerWin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KillerLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SurvivorBoostNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasPlans)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GotKeys)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoneRadio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonePlan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FisrtState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThirdState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HowSurvivorsWin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HowKillerWin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Killer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KillerPlayer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Map.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstPlayer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondPlayer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThirdPlayer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstAvatar.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondAvatar.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThirdAvatar.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }
