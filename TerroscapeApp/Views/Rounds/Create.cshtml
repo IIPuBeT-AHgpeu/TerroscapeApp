@@ -1,68 +1,87 @@
 ﻿@model TerroscapeApp.Database.Round
 
 @{
-    ViewData["Title"] = "Добавление новой партии";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Добавление новой партии</h1>
+<h1>Create</h1>
+
+<h4>Round</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MapId" class="control-label">ID карты</label>
+                <label asp-for="MapId" class="control-label"></label>
                 <select asp-for="MapId" class ="form-control" asp-items="ViewBag.MapId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="KillerId" class="control-label">ID убийцы</label>
+                <label asp-for="KillerId" class="control-label"></label>
                 <select asp-for="KillerId" class ="form-control" asp-items="ViewBag.KillerId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="KillerPlayerId" class="control-label">ID игрока-убийцы</label>
+                <label asp-for="KillerPlayerId" class="control-label"></label>
                 <select asp-for="KillerPlayerId" class ="form-control" asp-items="ViewBag.KillerPlayerId"></select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="KillerWin" /> Победа убийцы
+                    <input class="form-check-input" asp-for="KillerWin" /> @Html.DisplayNameFor(model => model.KillerWin)
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="FirstSurvivor" class="control-label">Первый выживший</label>
-                <select asp-for="FirstSurvivor" class ="form-control" asp-items="ViewBag.FirstSurvivor"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SecondSurvivor" class="control-label">Второй выживший</label>
-                <select asp-for="SecondSurvivor" class ="form-control" asp-items="ViewBag.SecondSurvivor"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThirdSurvivor" class="control-label">Третий выживший</label>
-                <select asp-for="ThirdSurvivor" class ="form-control" asp-items="ViewBag.ThirdSurvivor"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="DonePlan" class="control-label">План выполнен?</label>
+                <label asp-for="DonePlan" class="control-label"></label>
                 <input asp-for="DonePlan" class="form-control" />
                 <span asp-validation-for="DonePlan" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HowSurvivorsWin" class="control-label">Победа выживших</label>
+                <label asp-for="FirstPlayerId" class="control-label"></label>
+                <select asp-for="FirstPlayerId" class ="form-control" asp-items="ViewBag.FirstPlayerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstAvatarId" class="control-label"></label>
+                <select asp-for="FirstAvatarId" class ="form-control" asp-items="ViewBag.FirstAvatarId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondPlayerId" class="control-label"></label>
+                <select asp-for="SecondPlayerId" class ="form-control" asp-items="ViewBag.SecondPlayerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondAvatarId" class="control-label"></label>
+                <select asp-for="SecondAvatarId" class ="form-control" asp-items="ViewBag.SecondAvatarId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdPlayerId" class="control-label"></label>
+                <select asp-for="ThirdPlayerId" class ="form-control" asp-items="ViewBag.ThirdPlayerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdAvatarId" class="control-label"></label>
+                <select asp-for="ThirdAvatarId" class ="form-control" asp-items="ViewBag.ThirdAvatarId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="HowSurvivorsWin" class="control-label"></label>
                 <input asp-for="HowSurvivorsWin" class="form-control" />
                 <span asp-validation-for="HowSurvivorsWin" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HowKillerWin" class="control-label">Победа убийцы</label>
+                <label asp-for="HowKillerWin" class="control-label"></label>
                 <input asp-for="HowKillerWin" class="form-control" />
                 <span asp-validation-for="HowKillerWin" class="text-danger"></span>
             </div>
-            <div class="form-group" style="padding-top: 10px">
-                <input type="submit" value="Добавить" class="btn btn-primary" />
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Вернуться к списку партий</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

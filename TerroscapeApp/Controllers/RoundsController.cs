@@ -21,7 +21,7 @@ namespace TerroscapeApp.Controllers
         // GET: Rounds
         public async Task<IActionResult> Index()
         {
-            var terroscapeStatsContext = _context.Rounds.Include(r => r.FirstSurvivorNavigation).Include(r => r.Killer).Include(r => r.KillerPlayer).Include(r => r.Map).Include(r => r.SecondSurvivorNavigation).Include(r => r.ThirdSurvivorNavigation);
+            var terroscapeStatsContext = _context.Rounds.Include(r => r.FirstAvatar).Include(r => r.FirstPlayer).Include(r => r.Killer).Include(r => r.KillerPlayer).Include(r => r.Map).Include(r => r.SecondAvatar).Include(r => r.SecondPlayer).Include(r => r.ThirdAvatar).Include(r => r.ThirdPlayer);
             return View(await terroscapeStatsContext.ToListAsync());
         }
 
@@ -34,12 +34,15 @@ namespace TerroscapeApp.Controllers
             }
 
             var round = await _context.Rounds
-                .Include(r => r.FirstSurvivorNavigation)
+                .Include(r => r.FirstAvatar)
+                .Include(r => r.FirstPlayer)
                 .Include(r => r.Killer)
                 .Include(r => r.KillerPlayer)
                 .Include(r => r.Map)
-                .Include(r => r.SecondSurvivorNavigation)
-                .Include(r => r.ThirdSurvivorNavigation)
+                .Include(r => r.SecondAvatar)
+                .Include(r => r.SecondPlayer)
+                .Include(r => r.ThirdAvatar)
+                .Include(r => r.ThirdPlayer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (round == null)
             {
@@ -52,12 +55,15 @@ namespace TerroscapeApp.Controllers
         // GET: Rounds/Create
         public IActionResult Create()
         {
-            ViewData["FirstSurvivor"] = new SelectList(_context.Survivors, "Id", "Id");
+            ViewData["FirstAvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
+            ViewData["FirstPlayerId"] = new SelectList(_context.Players, "Id", "Id");
             ViewData["KillerId"] = new SelectList(_context.Killers, "Id", "Id");
             ViewData["KillerPlayerId"] = new SelectList(_context.Players, "Id", "Id");
             ViewData["MapId"] = new SelectList(_context.Maps, "Id", "Id");
-            ViewData["SecondSurvivor"] = new SelectList(_context.Survivors, "Id", "Id");
-            ViewData["ThirdSurvivor"] = new SelectList(_context.Survivors, "Id", "Id");
+            ViewData["SecondAvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
+            ViewData["SecondPlayerId"] = new SelectList(_context.Players, "Id", "Id");
+            ViewData["ThirdAvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
+            ViewData["ThirdPlayerId"] = new SelectList(_context.Players, "Id", "Id");
             return View();
         }
 
@@ -66,7 +72,7 @@ namespace TerroscapeApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MapId,KillerId,KillerPlayerId,KillerBoostNum,KillerWin,KillerLevel,FirstSurvivor,SecondSurvivor,ThirdSurvivor,SurvivorBoostNum,HasPlans,GotKeys,DoneRadio,DonePlan,HowSurvivorsWin,HowKillerWin")] Round round)
+        public async Task<IActionResult> Create([Bind("Id,MapId,KillerId,KillerPlayerId,KillerBoostNum,KillerWin,KillerLevel,SurvivorBoostNum,HasPlans,GotKeys,DoneRadio,DonePlan,FirstPlayerId,FirstAvatarId,FisrtState,SecondPlayerId,SecondAvatarId,SecondState,ThirdPlayerId,ThirdAvatarId,ThirdState,HowSurvivorsWin,HowKillerWin,Date")] Round round)
         {
             if (ModelState.IsValid)
             {
@@ -74,12 +80,15 @@ namespace TerroscapeApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FirstSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.FirstSurvivor);
+            ViewData["FirstAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.FirstAvatarId);
+            ViewData["FirstPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.FirstPlayerId);
             ViewData["KillerId"] = new SelectList(_context.Killers, "Id", "Id", round.KillerId);
             ViewData["KillerPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.KillerPlayerId);
             ViewData["MapId"] = new SelectList(_context.Maps, "Id", "Id", round.MapId);
-            ViewData["SecondSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.SecondSurvivor);
-            ViewData["ThirdSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.ThirdSurvivor);
+            ViewData["SecondAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.SecondAvatarId);
+            ViewData["SecondPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.SecondPlayerId);
+            ViewData["ThirdAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.ThirdAvatarId);
+            ViewData["ThirdPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.ThirdPlayerId);
             return View(round);
         }
 
@@ -96,12 +105,15 @@ namespace TerroscapeApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["FirstSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.FirstSurvivor);
+            ViewData["FirstAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.FirstAvatarId);
+            ViewData["FirstPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.FirstPlayerId);
             ViewData["KillerId"] = new SelectList(_context.Killers, "Id", "Id", round.KillerId);
             ViewData["KillerPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.KillerPlayerId);
             ViewData["MapId"] = new SelectList(_context.Maps, "Id", "Id", round.MapId);
-            ViewData["SecondSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.SecondSurvivor);
-            ViewData["ThirdSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.ThirdSurvivor);
+            ViewData["SecondAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.SecondAvatarId);
+            ViewData["SecondPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.SecondPlayerId);
+            ViewData["ThirdAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.ThirdAvatarId);
+            ViewData["ThirdPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.ThirdPlayerId);
             return View(round);
         }
 
@@ -110,7 +122,7 @@ namespace TerroscapeApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MapId,KillerId,KillerPlayerId,KillerBoostNum,KillerWin,KillerLevel,FirstSurvivor,SecondSurvivor,ThirdSurvivor,SurvivorBoostNum,HasPlans,GotKeys,DoneRadio,DonePlan,HowSurvivorsWin,HowKillerWin")] Round round)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,MapId,KillerId,KillerPlayerId,KillerBoostNum,KillerWin,KillerLevel,SurvivorBoostNum,HasPlans,GotKeys,DoneRadio,DonePlan,FirstPlayerId,FirstAvatarId,FisrtState,SecondPlayerId,SecondAvatarId,SecondState,ThirdPlayerId,ThirdAvatarId,ThirdState,HowSurvivorsWin,HowKillerWin,Date")] Round round)
         {
             if (id != round.Id)
             {
@@ -137,12 +149,15 @@ namespace TerroscapeApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FirstSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.FirstSurvivor);
+            ViewData["FirstAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.FirstAvatarId);
+            ViewData["FirstPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.FirstPlayerId);
             ViewData["KillerId"] = new SelectList(_context.Killers, "Id", "Id", round.KillerId);
             ViewData["KillerPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.KillerPlayerId);
             ViewData["MapId"] = new SelectList(_context.Maps, "Id", "Id", round.MapId);
-            ViewData["SecondSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.SecondSurvivor);
-            ViewData["ThirdSurvivor"] = new SelectList(_context.Survivors, "Id", "Id", round.ThirdSurvivor);
+            ViewData["SecondAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.SecondAvatarId);
+            ViewData["SecondPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.SecondPlayerId);
+            ViewData["ThirdAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.ThirdAvatarId);
+            ViewData["ThirdPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.ThirdPlayerId);
             return View(round);
         }
 
@@ -155,12 +170,15 @@ namespace TerroscapeApp.Controllers
             }
 
             var round = await _context.Rounds
-                .Include(r => r.FirstSurvivorNavigation)
+                .Include(r => r.FirstAvatar)
+                .Include(r => r.FirstPlayer)
                 .Include(r => r.Killer)
                 .Include(r => r.KillerPlayer)
                 .Include(r => r.Map)
-                .Include(r => r.SecondSurvivorNavigation)
-                .Include(r => r.ThirdSurvivorNavigation)
+                .Include(r => r.SecondAvatar)
+                .Include(r => r.SecondPlayer)
+                .Include(r => r.ThirdAvatar)
+                .Include(r => r.ThirdPlayer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (round == null)
             {

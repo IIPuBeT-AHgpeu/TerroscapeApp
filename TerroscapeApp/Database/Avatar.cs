@@ -16,5 +16,7 @@ public partial class Avatar
 
     public DBEnums.GameNameEnum GameName { get; set; } = DBEnums.GameNameEnum.Base;
 
-    public virtual ICollection<Survivor> Survivors { get; set; } = new List<Survivor>();
+    public virtual ICollection<Round> FirstSurvivorRounds { get; set; } = new List<Round>();
+    public virtual ICollection<Round> SecondSurvivorRounds { get; set; } = new List<Round>();
+    public virtual ICollection<Round> ThirdSurvivorRounds { get; set; } = new List<Round>();
 }

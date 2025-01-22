@@ -18,13 +18,7 @@ public partial class Round
 
     public bool KillerWin { get; set; }
 
-    public int KillerLevel { get; set; }
-
-    public int FirstSurvivor { get; set; }
-
-    public int SecondSurvivor { get; set; }
-
-    public int ThirdSurvivor { get; set; }
+    public int KillerLevel { get; set; }  
 
     public int SurvivorBoostNum { get; set; }
 
@@ -36,11 +30,25 @@ public partial class Round
 
     public bool? DonePlan { get; set; }
 
+
+    public int FirstPlayerId { get; set; }
+    public int FirstAvatarId { get; set; }
+    public DBEnums.SurvivorStateEnum FisrtState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
+
+    public int? SecondPlayerId { get; set; }
+    public int SecondAvatarId { get; set; }
+    public DBEnums.SurvivorStateEnum SecondState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
+
+    public int? ThirdPlayerId { get; set; }
+    public int ThirdAvatarId { get; set; }
+    public DBEnums.SurvivorStateEnum ThirdState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
+
+
     public DBEnums.SurvivorWinEnum? HowSurvivorsWin { get; set; }
 
     public DBEnums.KillerWinEnum? HowKillerWin { get; set; }
 
-    public virtual Survivor FirstSurvivorNavigation { get; set; } = null!;
+    public DateTime? Date { get; set; }
 
     public virtual Killer Killer { get; set; } = null!;
 
@@ -48,7 +56,15 @@ public partial class Round
 
     public virtual Map Map { get; set; } = null!;
 
-    public virtual Survivor SecondSurvivorNavigation { get; set; } = null!;
 
-    public virtual Survivor ThirdSurvivorNavigation { get; set; } = null!;
+    public virtual Player FirstPlayer { get; set; } = null!;
+
+    public virtual Player? SecondPlayer { get; set; }
+
+    public virtual Player? ThirdPlayer { get; set; }
+
+    public virtual Avatar FirstAvatar { get; set; } = null!;
+    public virtual Avatar SecondAvatar { get; set; } = null!;
+    public virtual Avatar ThirdAvatar { get; set; } = null!;
+
 }

@@ -44,21 +44,6 @@
                 <span asp-validation-for="KillerLevel" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FirstSurvivor" class="control-label"></label>
-                <select asp-for="FirstSurvivor" class="form-control" asp-items="ViewBag.FirstSurvivor"></select>
-                <span asp-validation-for="FirstSurvivor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SecondSurvivor" class="control-label"></label>
-                <select asp-for="SecondSurvivor" class="form-control" asp-items="ViewBag.SecondSurvivor"></select>
-                <span asp-validation-for="SecondSurvivor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThirdSurvivor" class="control-label"></label>
-                <select asp-for="ThirdSurvivor" class="form-control" asp-items="ViewBag.ThirdSurvivor"></select>
-                <span asp-validation-for="ThirdSurvivor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="SurvivorBoostNum" class="control-label"></label>
                 <input asp-for="SurvivorBoostNum" class="form-control" />
                 <span asp-validation-for="SurvivorBoostNum" class="text-danger"></span>
@@ -84,6 +69,51 @@
                 <span asp-validation-for="DonePlan" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="FirstPlayerId" class="control-label"></label>
+                <select asp-for="FirstPlayerId" class="form-control" asp-items="ViewBag.FirstPlayerId"></select>
+                <span asp-validation-for="FirstPlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstAvatarId" class="control-label"></label>
+                <select asp-for="FirstAvatarId" class="form-control" asp-items="ViewBag.FirstAvatarId"></select>
+                <span asp-validation-for="FirstAvatarId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FisrtState" class="control-label"></label>
+                <select asp-for="FisrtState" class="form-control"></select>
+                <span asp-validation-for="FisrtState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondPlayerId" class="control-label"></label>
+                <select asp-for="SecondPlayerId" class="form-control" asp-items="ViewBag.SecondPlayerId"></select>
+                <span asp-validation-for="SecondPlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondAvatarId" class="control-label"></label>
+                <select asp-for="SecondAvatarId" class="form-control" asp-items="ViewBag.SecondAvatarId"></select>
+                <span asp-validation-for="SecondAvatarId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondState" class="control-label"></label>
+                <select asp-for="SecondState" class="form-control"></select>
+                <span asp-validation-for="SecondState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdPlayerId" class="control-label"></label>
+                <select asp-for="ThirdPlayerId" class="form-control" asp-items="ViewBag.ThirdPlayerId"></select>
+                <span asp-validation-for="ThirdPlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdAvatarId" class="control-label"></label>
+                <select asp-for="ThirdAvatarId" class="form-control" asp-items="ViewBag.ThirdAvatarId"></select>
+                <span asp-validation-for="ThirdAvatarId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdState" class="control-label"></label>
+                <select asp-for="ThirdState" class="form-control"></select>
+                <span asp-validation-for="ThirdState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="HowSurvivorsWin" class="control-label"></label>
                 <input asp-for="HowSurvivorsWin" class="form-control" />
                 <span asp-validation-for="HowSurvivorsWin" class="text-danger"></span>
@@ -92,6 +122,11 @@
                 <label asp-for="HowKillerWin" class="control-label"></label>
                 <input asp-for="HowKillerWin" class="form-control" />
                 <span asp-validation-for="HowKillerWin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

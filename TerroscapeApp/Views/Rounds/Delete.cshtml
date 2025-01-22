@@ -60,6 +60,24 @@
             @Html.DisplayFor(model => model.DonePlan)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FisrtState)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FisrtState)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SecondState)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SecondState)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThirdState)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThirdState)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.HowSurvivorsWin)
         </dt>
         <dd class = "col-sm-10">
@@ -72,10 +90,10 @@
             @Html.DisplayFor(model => model.HowKillerWin)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstSurvivorNavigation)
+            @Html.DisplayNameFor(model => model.Date)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstSurvivorNavigation.Id)
+            @Html.DisplayFor(model => model.Date)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Killer)
@@ -96,16 +114,40 @@
             @Html.DisplayFor(model => model.Map.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SecondSurvivorNavigation)
+            @Html.DisplayNameFor(model => model.FirstPlayer)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SecondSurvivorNavigation.Id)
+            @Html.DisplayFor(model => model.FirstPlayer.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ThirdSurvivorNavigation)
+            @Html.DisplayNameFor(model => model.SecondPlayer)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ThirdSurvivorNavigation.Id)
+            @Html.DisplayFor(model => model.SecondPlayer.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThirdPlayer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThirdPlayer.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstAvatar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstAvatar.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SecondAvatar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SecondAvatar.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThirdAvatar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThirdAvatar.Id)
         </dd>
     </dl>
     

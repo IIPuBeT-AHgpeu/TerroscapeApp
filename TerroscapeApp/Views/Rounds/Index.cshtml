@@ -1,52 +1,58 @@
 ﻿@model IEnumerable<TerroscapeApp.Database.Round>
 
 @{
-    ViewData["Title"] = "Партии";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Партии</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Добавить новую партию</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Количество усилителей убийцы
+                @Html.DisplayNameFor(model => model.KillerBoostNum)
             </th>
             <th>
-                Победа убийцы?
+                @Html.DisplayNameFor(model => model.KillerWin)
             </th>
             <th>
-                Уровень убийцы
+                @Html.DisplayNameFor(model => model.KillerLevel)
             </th>
             <th>
-                Количество усилителей выживших
+                @Html.DisplayNameFor(model => model.SurvivorBoostNum)
             </th>
             <th>
-                Есть ли план?
+                @Html.DisplayNameFor(model => model.HasPlans)
             </th>
             <th>
-                Все ключи собраны?
+                @Html.DisplayNameFor(model => model.GotKeys)
             </th>
             <th>
-                Радио починено?
+                @Html.DisplayNameFor(model => model.DoneRadio)
             </th>
             <th>
-                Выполнен план?
+                @Html.DisplayNameFor(model => model.DonePlan)
             </th>
             <th>
-                Как победили выжившие?
+                @Html.DisplayNameFor(model => model.FisrtState)
             </th>
             <th>
-                Как победил убийца?
+                @Html.DisplayNameFor(model => model.SecondState)
             </th>
             <th>
-                Имя первой жертвы
+                @Html.DisplayNameFor(model => model.ThirdState)
             </th>
             <th>
-                Имя первого игрока
+                @Html.DisplayNameFor(model => model.HowSurvivorsWin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HowKillerWin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Killer)
@@ -58,10 +64,22 @@
                 @Html.DisplayNameFor(model => model.Map)
             </th>
             <th>
-                Имя второго выжившего
+                @Html.DisplayNameFor(model => model.FirstPlayer)
             </th>
             <th>
-                Имя третьего выжившего
+                @Html.DisplayNameFor(model => model.SecondPlayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThirdPlayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstAvatar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondAvatar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThirdAvatar)
             </th>
             <th></th>
         </tr>
@@ -94,23 +112,22 @@
                 @Html.DisplayFor(modelItem => item.DonePlan)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.FisrtState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdState)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.HowSurvivorsWin)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HowKillerWin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstSurvivorNavigation.Avatar.Name)
-            </td>
-            <td>
-                @if(item.FirstSurvivorNavigation.Player == null)
-                {
-                    Html.Display("Bot");                    
-                }
-                else
-                {
-                    Html.DisplayFor(modelItem => item.FirstSurvivorNavigation.Player.Name);
-                }
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Killer.Id)
@@ -122,10 +139,22 @@
                 @Html.DisplayFor(modelItem => item.Map.Id)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.SecondSurvivorNavigation.Avatar.Name)
+                @Html.DisplayFor(modelItem => item.FirstPlayer.Id)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.ThirdSurvivorNavigation.Avatar.Name)
+                @Html.DisplayFor(modelItem => item.SecondPlayer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdPlayer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstAvatar.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondAvatar.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdAvatar.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

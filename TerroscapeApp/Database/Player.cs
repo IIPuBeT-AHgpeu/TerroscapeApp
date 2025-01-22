@@ -11,7 +11,8 @@ public partial class Player
 
     public string Login { get; set; } = null!;
 
-    public virtual ICollection<Round> Rounds { get; set; } = new List<Round>();
-
-    public virtual ICollection<Survivor> Survivors { get; set; } = new List<Survivor>();
+    public virtual ICollection<Round> KillerRounds { get; set; } = new List<Round>();
+    public virtual ICollection<Round> FirstSurvivorRounds { get; set; } = new List<Round>();
+    public virtual ICollection<Round> SecondSurvivorRounds { get; set; } = new List<Round>();
+    public virtual ICollection<Round> ThirdSurvivorRounds { get; set; } = new List<Round>();
 }
