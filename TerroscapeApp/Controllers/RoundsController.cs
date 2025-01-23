@@ -65,15 +65,23 @@ namespace TerroscapeApp.Controllers
         // GET: Rounds/Create
         public IActionResult Create()
         {
-            ViewData["FirstAvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
-            ViewData["FirstPlayerId"] = new SelectList(_context.Players, "Id", "Id");
-            ViewData["KillerId"] = new SelectList(_context.Killers, "Id", "Id");
-            ViewData["KillerPlayerId"] = new SelectList(_context.Players, "Id", "Id");
-            ViewData["MapId"] = new SelectList(_context.Maps, "Id", "Id");
-            ViewData["SecondAvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
-            ViewData["SecondPlayerId"] = new SelectList(_context.Players, "Id", "Id");
-            ViewData["ThirdAvatarId"] = new SelectList(_context.Avatars, "Id", "Id");
-            ViewData["ThirdPlayerId"] = new SelectList(_context.Players, "Id", "Id");
+            ViewData["FirstAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["FirstPlayerList"] = new SelectList(_context.Players, "Id", "Name");
+
+            ViewData["KillersList"] = new SelectList(_context.Killers, "Id", "Name");
+            ViewData["KillerPlayerList"] = new SelectList(_context.Players, "Id", "Name");
+
+            ViewData["MapList"] = new SelectList(_context.Maps, "Id", "Name");
+
+            var players = (from p in _context.Players select new { Id = p.Id, Name = p.Name }).ToList();
+            players.Add(new { Id = 0, Name = "Нет игрока" });
+
+            ViewData["SecondAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["SecondPlayerList"] = new SelectList(players, "Id", "Name");
+
+            ViewData["ThirdAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["ThirdPlayerList"] = new SelectList(players, "Id", "Name");
+
             return View();
         }
 
