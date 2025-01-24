@@ -32,7 +32,7 @@ public partial class Round
 
     public int FirstPlayerId { get; set; }
     public int FirstAvatarId { get; set; }
-    public DBEnums.SurvivorStateEnum FisrtState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
+    public DBEnums.SurvivorStateEnum FirstState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
 
     public int? SecondPlayerId { get; set; }
     public int SecondAvatarId { get; set; }
@@ -42,9 +42,7 @@ public partial class Round
     public int ThirdAvatarId { get; set; }
     public DBEnums.SurvivorStateEnum ThirdState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
 
-    public DBEnums.SurvivorWinEnum? HowSurvivorsWin { get; set; }
-
-    public DBEnums.KillerWinEnum? HowKillerWin { get; set; }
+    public DBEnums.WinEnum WinWay { get; set; } = DBEnums.WinEnum.Murder;
 
     public DateTime? Date { get; set; }
 
@@ -53,7 +51,6 @@ public partial class Round
     public virtual Player KillerPlayer { get; set; } = null!;
 
     public virtual Map Map { get; set; } = null!;
-
 
     public virtual Player FirstPlayer { get; set; } = null!;
 

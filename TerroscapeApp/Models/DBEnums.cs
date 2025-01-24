@@ -11,13 +11,29 @@
             PutrefiedEnmity
         }
 
+        public enum WinEnum
+        {
+            Murder,
+            Time,
+            Escape,
+            Police,
+            Plan,
+            Other
+        }
+
+        /// <summary>
+        /// Old version. Please use WinEnum.
+        /// </summary>
         public enum KillerWinEnum
         {
             Murder,
             Time,
             Other
         }
-
+        
+        /// <summary>
+        /// Old version. Please use WinEnum.
+        /// </summary>
         public enum SurvivorWinEnum
         {
             Escape,

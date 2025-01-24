@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TerroscapeApp.Database;
@@ -12,9 +13,11 @@ using TerroscapeApp.Models;
 namespace TerroscapeApp.Migrations
 {
     [DbContext(typeof(TerroscapeStatsContext))]
-    partial class TerroscapeStatsContextModelSnapshot : ModelSnapshot
+    [Migration("20250124100017_MergeWinEnums")]
+    partial class MergeWinEnums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

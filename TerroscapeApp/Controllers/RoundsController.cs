@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TerroscapeApp.Database;
+using TerroscapeApp.Service;
 
 namespace TerroscapeApp.Controllers
 {
@@ -90,23 +91,36 @@ namespace TerroscapeApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MapId,KillerId,KillerPlayerId,KillerBoostNum,KillerWin,KillerLevel,SurvivorBoostNum,HasPlans,GotKeys,DoneRadio,DonePlan,FirstPlayerId,FirstAvatarId,FisrtState,SecondPlayerId,SecondAvatarId,SecondState,ThirdPlayerId,ThirdAvatarId,ThirdState,HowSurvivorsWin,HowKillerWin,Date")] Round round)
+        public async Task<IActionResult> Create([Bind("Id,Date,MapId,KillerPlayerId,KillerId,KillerLevel,KillerBoostNum,FirstPlayerId,FirstAvatarId,FisrtState,SecondPlayerId,SecondAvatarId,SecondState,ThirdPlayerId,ThirdAvatarId,ThirdState,SurvivorBoostNum,HasPlans,DonePlan,GotKeys,DoneRadio,KillerWin,WinWay")] Round round)
         {
-            if (ModelState.IsValid)
+            if (round != null)
             {
+                if (!round.HasPlans) round.DonePlan = null;
+                if (round.Date == null) round.Date = DateTime.Now;
+                if (round.SecondPlayerId == 0) round.SecondPlayerId = null;
+                if (round.ThirdPlayerId == 0) round.ThirdPlayerId = null;
                 _context.Add(round);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FirstAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.FirstAvatarId);
-            ViewData["FirstPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.FirstPlayerId);
-            ViewData["KillerId"] = new SelectList(_context.Killers, "Id", "Id", round.KillerId);
-            ViewData["KillerPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.KillerPlayerId);
-            ViewData["MapId"] = new SelectList(_context.Maps, "Id", "Id", round.MapId);
-            ViewData["SecondAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.SecondAvatarId);
-            ViewData["SecondPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.SecondPlayerId);
-            ViewData["ThirdAvatarId"] = new SelectList(_context.Avatars, "Id", "Id", round.ThirdAvatarId);
-            ViewData["ThirdPlayerId"] = new SelectList(_context.Players, "Id", "Id", round.ThirdPlayerId);
+
+            ViewData["FirstAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["FirstPlayerList"] = new SelectList(_context.Players, "Id", "Name");
+
+            ViewData["KillersList"] = new SelectList(_context.Killers, "Id", "Name");
+            ViewData["KillerPlayerList"] = new SelectList(_context.Players, "Id", "Name");
+
+            ViewData["MapList"] = new SelectList(_context.Maps, "Id", "Name");
+
+            var players = (from p in _context.Players select new { Id = p.Id, Name = p.Name }).ToList();
+            players.Add(new { Id = 0, Name = "Нет игрока" });
+
+            ViewData["SecondAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["SecondPlayerList"] = new SelectList(players, "Id", "Name");
+
+            ViewData["ThirdAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
+            ViewData["ThirdPlayerList"] = new SelectList(players, "Id", "Name");
+
             return View(round);
         }
 

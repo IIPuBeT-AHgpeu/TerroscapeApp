@@ -30,9 +30,8 @@ public partial class TerroscapeStatsContext : DbContext
     {
         modelBuilder
             .HasPostgresEnum("game_name_enum", ["base", "feral_instincts", "amorphous_peril", "lethal_immortals", "putrefied_enmity"])
-            .HasPostgresEnum("killer_win_enum", ["murder", "time", "other"])
-            .HasPostgresEnum("survivor_state_enum", ["alive", "injured", "dead"])
-            .HasPostgresEnum("survivor_win_enum", ["escape", "police", "plan", "other"]);
+            .HasPostgresEnum("win_enum", ["murder", "time", "escape", "police", "plan", "other"])
+            .HasPostgresEnum("survivor_state_enum", ["alive", "injured", "dead"]);
 
         modelBuilder.Entity<Avatar>(entity =>
         {
@@ -160,7 +159,7 @@ public partial class TerroscapeStatsContext : DbContext
                 .HasForeignKey(d => d.FirstAvatarId)
                 .HasConstraintName("round_first_avatar_fk")
                 .OnDelete(DeleteBehavior.Cascade);
-            entity.Property(s => s.FisrtState)
+            entity.Property(s => s.FirstState)
                 .HasColumnName("first_survivor_state")
                 .HasColumnType("survivor_state_enum")
                 .HasDefaultValue(DBEnums.SurvivorStateEnum.Alive);
@@ -210,14 +209,10 @@ public partial class TerroscapeStatsContext : DbContext
                 .HasForeignKey(d => d.MapId)
                 .HasConstraintName("round_map_fk");            
 
-            entity.Property(e => e.HowSurvivorsWin)
-                .HasColumnName("how_survivors_win")
-                .HasColumnType("survivor_win_enum")
-                .HasDefaultValue(null);
-            entity.Property(e => e.HowKillerWin)
-                .HasColumnName("how_killer_win")
-                .HasColumnType("killer_win_enum")
-                .HasDefaultValue(null);
+            entity.Property(e => e.WinWay)
+                .HasColumnName("win_way")
+                .HasColumnType("win_enum")
+                .HasDefaultValue(DBEnums.WinEnum.Murder);
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -40,6 +40,7 @@
             <th>
                 Карта
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -61,9 +62,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(t => item.FirstPlayer.Name) играл за жертву @Html.DisplayFor(t => item.FirstAvatar.Name) - @{
-                        var s1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.FisrtState);
-                        if (s1 != null) Html.Raw(s1);
-                        else Html.Raw("Неизвестное значение");
+                        var s1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.FirstState);
+                        if (s1 != null) @Html.Raw(s1)
+                        else @Html.Raw("Неизвестное значение")
                     }
                 </td>
                 <td>
@@ -71,20 +72,20 @@
                         var s2 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.SecondState);
                         if (item.SecondPlayer == null)
                         {
-                            Html.Raw("Жертва ");
-                            Html.DisplayFor(t => item.SecondAvatar.Name);
-                            Html.Raw(", состояние - ");
+                            @Html.Raw("Жертва ")
+                            @Html.DisplayFor(t => item.SecondAvatar.Name)
+                            @Html.Raw(", состояние - ")
                         }
                         else
                         {
-                            Html.DisplayFor(t => item.SecondPlayer.Name);
-                            Html.Raw(" играл за жертву ");
-                            Html.DisplayFor(t => item.SecondAvatar.Name);
-                            Html.Raw(" - ");
+                            @Html.DisplayFor(t => item.SecondPlayer.Name)
+                            @Html.Raw(" играл за жертву ")
+                            @Html.DisplayFor(t => item.SecondAvatar.Name)
+                            @Html.Raw(" - ")
                         }
 
-                        if (s2 != null) Html.Raw(s2);
-                        else Html.Raw("Неизвестное значение");
+                        if (s2 != null) @Html.Raw(s2)
+                        else @Html.Raw("Неизвестное значение")
                     }
                 </td>
                 <td>
@@ -92,48 +93,33 @@
                         var s3 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(item.ThirdState);
                         if (item.ThirdPlayer == null)
                         {
-                            Html.Raw("Жертва ");
-                            Html.DisplayFor(t => item.ThirdAvatar.Name);
-                            Html.Raw(", состояние - ");
+                            @Html.Raw("Жертва ")
+                            @Html.DisplayFor(t => item.ThirdAvatar.Name)
+                            @Html.Raw(", состояние - ")
                         }
                         else
                         {
-                            Html.DisplayFor(t => item.ThirdPlayer.Name);
-                            Html.Raw(" играл за жертву ");
-                            Html.DisplayFor(t => item.ThirdAvatar.Name);
-                            Html.Raw(" - ");
+                            @Html.DisplayFor(t => item.ThirdPlayer.Name)
+                            @Html.Raw(" играл за жертву ")
+                            @Html.DisplayFor(t => item.ThirdAvatar.Name)
+                            @Html.Raw(" - ")
                         }
 
-                        if (s2 != null) Html.Raw(s2);
-                        else Html.Raw("Неизвестное значение");
+                        if (s2 != null) @Html.Raw(s2)
+                        else @Html.Raw("Неизвестное значение")
                     }
                 </td>
                 <td>
                     @{
-                        if (item.KillerWin) Html.Raw("Убийца");
-                        else Html.Raw("Жертвы");
+                        if (item.KillerWin) @Html.Raw("Убийца")
+                        else @Html.Raw("Жертвы")
                     }
                 </td>
                 <td>
                     @{
-                        string w = "Неизвестное значение";
-                        if (item.KillerWin)
-                        {
-                            if (item.HowKillerWin != null)
-                            {
-                                var kw = EnumsTranslation.KillerWinTranslation.GetValueOrDefault(item.HowKillerWin!);
-                                if (kw != null) w = kw;
-                            }
-                        }
-                        else
-                        {
-                            if (item.HowSurvivorsWin != null)
-                            {
-                                var sw = EnumsTranslation.SurvivorsWinTranslation.GetValueOrDefault(item.HowSurvivorsWin!);
-                                if (sw != null) w = sw;
-                            }
-                        }
-                        @Html.Raw(w);
+                        var ww = EnumsTranslation.WinWayTranslation.GetValueOrDefault(item.SecondState);
+                        if (ww != null) @Html.Raw(ww)
+                        else @Html.Raw("Неизвестное значение")
                     }
                 </td>
                 <td>

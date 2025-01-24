@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<TerroscapeStatsContext>(options => 
     options.UseNpgsql(
@@ -14,8 +16,7 @@ builder.Services.AddDbContext<TerroscapeStatsContext>(options =>
         o => {
                 o.MapEnum<DBEnums.GameNameEnum>("game_name_enum");
                 o.MapEnum<DBEnums.SurvivorStateEnum>("survivor_state_enum");
-                o.MapEnum<DBEnums.SurvivorWinEnum>("survivor_win_enum");
-                o.MapEnum<DBEnums.KillerWinEnum>("killer_win_enum");
+                o.MapEnum<DBEnums.WinEnum>("win_enum");
              }
         ));
 

@@ -1,4 +1,5 @@
-﻿@model TerroscapeApp.Database.Round
+﻿@using TerroscapeApp.Service
+@model TerroscapeApp.Database.Round
 
 @{
     ViewData["Title"] = "Create";
@@ -40,59 +41,80 @@
                 <input asp-for="KillerBoostNum" class="form-control" min="0" max="10" value="0" />
                 <span asp-validation-for="KillerBoostNum" class="text-danger"></span>
             </div>
-
-
-
-
-
             <div class="form-group">
-                <label asp-for="FirstPlayerId" class="control-label"></label>
-                <select asp-for="FirstPlayerId" class="form-control" asp-items="ViewBag.FirstPlayerId"></select>
+                <label asp-for="FirstPlayerId" class="control-label">Игрок-жертва 1</label>
+                <select asp-for="FirstPlayerId" class="form-control" asp-items="ViewBag.FirstPlayerList"></select>
             </div>
             <div class="form-group">
-                <label asp-for="FirstAvatarId" class="control-label"></label>
-                <select asp-for="FirstAvatarId" class="form-control" asp-items="ViewBag.FirstAvatarId"></select>
+                <label asp-for="FirstAvatarId" class="control-label">Жертва 1</label>
+                <select asp-for="FirstAvatarId" class="form-control" asp-items="ViewBag.FirstAvatarList"></select>
+            </div>
+            <div class="form-group" style="padding-top: 10px">
+                <label asp-for="FirstState" class="control-label">Состояние 1 жертвы на конец партии</label>
+                @Html.DropDownListFor(e => e.FirstState, new SelectList(EnumsTranslation.SurvivorStateTranslation, "Key", "Value"))
+                <span asp-validation-for="FirstState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondPlayerId" class="control-label">Игрок-жертва 2</label>
+                <select asp-for="SecondPlayerId" class="form-control" asp-items="ViewBag.SecondPlayerList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondAvatarId" class="control-label">Жертва 2</label>
+                <select asp-for="SecondAvatarId" class="form-control" asp-items="ViewBag.SecondAvatarList"></select>
+            </div>
+            <div class="form-group" style="padding-top: 10px">
+                <label asp-for="SecondState" class="control-label">Состояние 2 жертвы на конец партии</label>
+                @Html.DropDownListFor(e => e.SecondState, new SelectList(EnumsTranslation.SurvivorStateTranslation, "Key", "Value"))
+                <span asp-validation-for="SecondState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdPlayerId" class="control-label">Игрок-жертва 3</label>
+                <select asp-for="ThirdPlayerId" class="form-control" asp-items="ViewBag.ThirdPlayerList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdAvatarId" class="control-label">Жертва 3</label>
+                <select asp-for="ThirdAvatarId" class="form-control" asp-items="ViewBag.ThirdAvatarList"></select>
+            </div>
+            <div class="form-group" style="padding-top: 10px">
+                <label asp-for="ThirdState" class="control-label">Состояние 3 жертвы на конец партии</label>
+                @Html.DropDownListFor(e => e.ThirdState, new SelectList(EnumsTranslation.SurvivorStateTranslation, "Key", "Value"))
+                <span asp-validation-for="ThirdState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SurvivorBoostNum" class="control-label">Количесвто дополнительных навыков у жертв</label>
+                <input asp-for="SurvivorBoostNum" class="form-control" min="0" max="10" value="0" />
+                <span asp-validation-for="SurvivorBoostNum" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="KillerWin" onchange="Check_Changed" /> @Html.DisplayNameFor(model => model.KillerWin)
+                    <input class="form-check-input" asp-for="HasPlans" /> Были "Планы"
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="DonePlan" class="control-label"></label>
-                <input asp-for="DonePlan" class="form-control" />
-                <span asp-validation-for="DonePlan" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DonePlan" /> Реализовали "План"
+                </label>
             </div>
-            <div class="form-group">
-                <label asp-for="SecondPlayerId" class="control-label"></label>
-                <select asp-for="SecondPlayerId" class="form-control" asp-items="ViewBag.SecondPlayerId"></select>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GotKeys" /> Жертвы собрали 5 ключей
+                </label>
             </div>
-            <div class="form-group">
-                <label asp-for="SecondAvatarId" class="control-label"></label>
-                <select asp-for="SecondAvatarId" class="form-control" asp-items="ViewBag.SecondAvatarId"></select>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DoneRadio" /> Жертвы починили радио
+                </label>
             </div>
-            <div class="form-group">
-                <label asp-for="ThirdPlayerId" class="control-label"></label>
-                <select asp-for="ThirdPlayerId" class="form-control" asp-items="ViewBag.ThirdPlayerId"></select>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="KillerWin" onchange="Check_Changed" /> Убийца победил
+                </label>
+            </div>                         
+            <div class="form-group" style="padding-top: 10px">
+                <label asp-for="WinWay" class="control-label">Способ победы</label>
+                @Html.DropDownListFor(e => e.WinWay, new SelectList(EnumsTranslation.WinWayTranslation, "Key", "Value"))
+                <span asp-validation-for="WinWay" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ThirdAvatarId" class="control-label"></label>
-                <select asp-for="ThirdAvatarId" class="form-control" asp-items="ViewBag.ThirdAvatarId"></select>
-            </div>
-
-            <div class="form-group" id="hsw">
-                <label asp-for="HowSurvivorsWin" class="control-label"></label>
-                <input asp-for="HowSurvivorsWin" class="form-control" />
-                <span asp-validation-for="HowSurvivorsWin" class="text-danger"></span>
-            </div>
-
-            <div class="form-group" id="hkw">
-                <label asp-for="HowKillerWin" class="control-label"></label>
-                <input asp-for="HowKillerWin" class="form-control" />
-                <span asp-validation-for="HowKillerWin" class="text-danger"></span>
-            </div>
-
-
             <div class="form-group" style="padding-top: 10px">
                 <input type="submit" value="Добавить" class="btn btn-primary" />
             </div>

@@ -5,8 +5,7 @@ namespace TerroscapeApp.Service
     public static class EnumsTranslation
     {
         public static Dictionary<Enum, string> GameNameTranslation { get; private set; }
-        public static Dictionary<Enum, string> SurvivorsWinTranslation { get; private set; }
-        public static Dictionary<Enum, string> KillerWinTranslation { get; private set; }
+        public static Dictionary<Enum, string> WinWayTranslation { get; private set; }
         public static Dictionary<Enum, string> SurvivorStateTranslation { get; private set; }
 
         static EnumsTranslation()
@@ -20,18 +19,13 @@ namespace TerroscapeApp.Service
                 { DBEnums.GameNameEnum.PutrefiedEnmity, "Королева мертвых" }
             };
 
-            SurvivorsWinTranslation = new Dictionary<Enum, string>()
-            {
-                { DBEnums.SurvivorWinEnum.Escape, "Побег" },
-                { DBEnums.SurvivorWinEnum.Police, "Прибытие полиции" },
-                { DBEnums.SurvivorWinEnum.Plan, "Выполнен победный план" },
-                { DBEnums.SurvivorWinEnum.Other, "Другое" }
-            };
-
-            KillerWinTranslation = new Dictionary<Enum, string>()
+            WinWayTranslation = new Dictionary<Enum, string>()
             {
                 { DBEnums.KillerWinEnum.Murder, "Убийство жертвы" },
                 { DBEnums.KillerWinEnum.Time, "Закончились карты экипировки" },
+                { DBEnums.SurvivorWinEnum.Escape, "Побег" },
+                { DBEnums.SurvivorWinEnum.Police, "Прибытие полиции" },
+                { DBEnums.SurvivorWinEnum.Plan, "Выполнен победный план" },
                 { DBEnums.KillerWinEnum.Other, "Другое" }
             };
 
