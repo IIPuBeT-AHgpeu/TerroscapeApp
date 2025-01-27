@@ -21,12 +21,12 @@ namespace TerroscapeApp.Service
 
             WinWayTranslation = new Dictionary<Enum, string>()
             {
-                { DBEnums.KillerWinEnum.Murder, "Убийство жертвы" },
-                { DBEnums.KillerWinEnum.Time, "Закончились карты экипировки" },
-                { DBEnums.SurvivorWinEnum.Escape, "Побег" },
-                { DBEnums.SurvivorWinEnum.Police, "Прибытие полиции" },
-                { DBEnums.SurvivorWinEnum.Plan, "Выполнен победный план" },
-                { DBEnums.KillerWinEnum.Other, "Другое" }
+                { DBEnums.WinEnum.Murder, "Убийство жертвы" },
+                { DBEnums.WinEnum.Time, "Закончились карты экипировки" },
+                { DBEnums.WinEnum.Escape, "Побег" },
+                { DBEnums.WinEnum.Police, "Прибытие полиции" },
+                { DBEnums.WinEnum.Plan, "Выполнен победный план" },
+                { DBEnums.WinEnum.Other, "Другое" }
             };
 
             SurvivorStateTranslation = new Dictionary<Enum, string>()

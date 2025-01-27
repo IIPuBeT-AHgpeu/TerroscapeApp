@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TerroscapeApp.Database;
+using TerroscapeApp.Models.ViewModels;
 using TerroscapeApp.Service;
 
 namespace TerroscapeApp.Controllers
@@ -91,14 +92,11 @@ namespace TerroscapeApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,MapId,KillerPlayerId,KillerId,KillerLevel,KillerBoostNum,FirstPlayerId,FirstAvatarId,FisrtState,SecondPlayerId,SecondAvatarId,SecondState,ThirdPlayerId,ThirdAvatarId,ThirdState,SurvivorBoostNum,HasPlans,DonePlan,GotKeys,DoneRadio,KillerWin,WinWay")] Round round)
+        public async Task<IActionResult> Create([Bind("Date,MapId,KillerPlayerId,KillerId,KillerLevel,KillerBoostNum,FirstPlayerId,FirstAvatarId,FisrtState,SecondPlayerId,SecondAvatarId,SecondState,ThirdPlayerId,ThirdAvatarId,ThirdState,SurvivorBoostNum,HasPlans,DonePlan,GotKeys,DoneRadio,KillerWin,WinWay")] AddRoundViewModel roundFromView)
         {
-            if (round != null)
+            if (roundFromView != null)
             {
-                if (!round.HasPlans) round.DonePlan = null;
-                if (round.Date == null) round.Date = DateTime.Now;
-                if (round.SecondPlayerId == 0) round.SecondPlayerId = null;
-                if (round.ThirdPlayerId == 0) round.ThirdPlayerId = null;
+                Round round = (Round)roundFromView;
                 _context.Add(round);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -121,7 +119,7 @@ namespace TerroscapeApp.Controllers
             ViewData["ThirdAvatarList"] = new SelectList(_context.Avatars, "Id", "Name");
             ViewData["ThirdPlayerList"] = new SelectList(players, "Id", "Name");
 
-            return View(round);
+            return View(roundFromView);
         }
 
         // GET: Rounds/Edit/5

@@ -1,33 +1,131 @@
-﻿@model TerroscapeApp.Database.Round
+﻿@using TerroscapeApp.Service
+@model TerroscapeApp.Database.Round
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Подробная информация о раунде</h1>
 
 <div>
-    <h4>Round</h4>
+    <h4>Раунд @Model.Id</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KillerBoostNum)
+        <dt class="col-sm-2" style="padding-top: 10px">
+            Общая информация:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" style="padding-top: 10px" />
+
+        <dt class="col-sm-2" style="padding-top: 20px">
+            Дата проведения партии
+        </dt>
+        <dd class="col-sm-10" style="padding-top: 20px">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+           Карта
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Map.Name)
+        </dd>
+
+        <dt class="col-sm-2" style="padding-top: 50px">
+            Информация об убийце:
+        </dt>
+        <dd class="col-sm-10" style="padding-top: 50px" />
+
+        <dt class="col-sm-2" style="padding-top: 20px">
+            Игрок за убийцу
+        </dt>
+        <dd class="col-sm-10" style="padding-top: 20px">
+            @Html.DisplayFor(model => model.KillerPlayer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Персонаж убийцы
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Killer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Уровень убийцы
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KillerLevel)
+        </dd>
+        <dt class="col-sm-2">
+            Количество доп. навыков убийцы
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.KillerBoostNum)
         </dd>
+
+        <dt class="col-sm-2" style="padding-top: 50px">
+            Информация о выживших:
+        </dt>
+        <dd class="col-sm-10" style="padding-top: 50px" />
+
+        <dt class="col-sm-2" style="padding-top: 20px">
+            Игрок 1
+        </dt>
+        <dd class="col-sm-10" style="padding-top: 20px">
+            @Html.DisplayFor(model => model.FirstPlayer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Жертва
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstAvatar.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Состояние на конец партии
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var s1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(Model.FirstState);
+                if (s1 != null)
+                    @Html.Raw(s1)
+                else
+                    @Html.Raw("Неизвестное значение")
+            }
+        </dd>
+        <dt class="col-sm-2" style="padding-top: 20px">
+            Игрок 2
+        </dt>
+        <dd class="col-sm-10" style="padding-top: 20px">
+            @{
+                if (Model.SecondPlayer == null) @Html.Raw("Нет игрока")
+                else @Html.DisplayFor(model => model.SecondPlayer!.Name)
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Жертва
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SecondAvatar.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Состояние на конец партии
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var s2 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(Model.SecondState);
+                if (s2 != null)
+                    @Html.Raw(s2)
+                else
+                    @Html.Raw("Неизвестное значение")
+            }
+        </dd>
+
+
+
+
+        
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.KillerWin)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.KillerWin)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KillerLevel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KillerLevel)
-        </dd>
+        </dd>     
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.SurvivorBoostNum)
         </dt>
@@ -57,91 +155,19 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DonePlan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstState)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstState)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SecondState)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SecondState)
-        </dd>
+        </dd>               
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ThirdState)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ThirdState)
-        </dd>
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HowSurvivorsWin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HowSurvivorsWin)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HowKillerWin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HowKillerWin)
-        </dd> *@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Killer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Killer.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KillerPlayer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KillerPlayer.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Map)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Map.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstPlayer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstPlayer.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SecondPlayer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SecondPlayer.Id)
-        </dd>
+        </dd>                                    
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ThirdPlayer)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ThirdPlayer.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstAvatar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstAvatar.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SecondAvatar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SecondAvatar.Id)
-        </dd>
+        </dd>                
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ThirdAvatar)
         </dt>

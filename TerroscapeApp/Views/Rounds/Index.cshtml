@@ -48,7 +48,7 @@
         <tr>
                 <td>
                     @{
-                        if (item.Date.HasValue)
+                        if (!item.Date.HasValue)
                             @Html.Raw("Не определено")
                         else
                             @Html.DisplayFor(o => item.Date)
@@ -117,7 +117,7 @@
                 </td>
                 <td>
                     @{
-                        var ww = EnumsTranslation.WinWayTranslation.GetValueOrDefault(item.SecondState);
+                        var ww = EnumsTranslation.WinWayTranslation.GetValueOrDefault(item.WinWay);
                         if (ww != null) @Html.Raw(ww)
                         else @Html.Raw("Неизвестное значение")
                     }
