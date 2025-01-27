@@ -11,75 +11,75 @@
     <h4>Раунд @Model.Id</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2" style="padding-top: 10px">
+        <dt class="col-sm-3" style="padding-top: 10px">
             Общая информация:
         </dt>
-        <dd class="col-sm-10" style="padding-top: 10px" />
+        <dd class="col-sm-9" style="padding-top: 10px" />
 
-        <dt class="col-sm-2" style="padding-top: 20px">
+        <dt class="col-sm-3" style="padding-top: 20px">
             Дата проведения партии
         </dt>
-        <dd class="col-sm-10" style="padding-top: 20px">
+        <dd class="col-sm-9" style="padding-top: 20px">
             @Html.DisplayFor(model => model.Date)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
            Карта
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Map.Name)
         </dd>
 
-        <dt class="col-sm-2" style="padding-top: 50px">
+        <dt class="col-sm-3" style="padding-top: 50px">
             Информация об убийце:
         </dt>
-        <dd class="col-sm-10" style="padding-top: 50px" />
+        <dd class="col-sm-9" style="padding-top: 50px" />
 
-        <dt class="col-sm-2" style="padding-top: 20px">
+        <dt class="col-sm-3" style="padding-top: 20px">
             Игрок за убийцу
         </dt>
-        <dd class="col-sm-10" style="padding-top: 20px">
+        <dd class="col-sm-9" style="padding-top: 20px">
             @Html.DisplayFor(model => model.KillerPlayer.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Персонаж убийцы
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Killer.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Уровень убийцы
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.KillerLevel)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Количество доп. навыков убийцы
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.KillerBoostNum)
         </dd>
 
-        <dt class="col-sm-2" style="padding-top: 50px">
+        <dt class="col-sm-3" style="padding-top: 50px">
             Информация о выживших:
         </dt>
-        <dd class="col-sm-10" style="padding-top: 50px" />
+        <dd class="col-sm-9" style="padding-top: 50px" />
 
-        <dt class="col-sm-2" style="padding-top: 20px">
+        <dt class="col-sm-3" style="padding-top: 20px">
             Игрок 1
         </dt>
-        <dd class="col-sm-10" style="padding-top: 20px">
+        <dd class="col-sm-9" style="padding-top: 20px">
             @Html.DisplayFor(model => model.FirstPlayer.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Жертва
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.FirstAvatar.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Состояние на конец партии
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @{
                 var s1 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(Model.FirstState);
                 if (s1 != null)
@@ -88,25 +88,25 @@
                     @Html.Raw("Неизвестное значение")
             }
         </dd>
-        <dt class="col-sm-2" style="padding-top: 20px">
+        <dt class="col-sm-3" style="padding-top: 20px">
             Игрок 2
         </dt>
-        <dd class="col-sm-10" style="padding-top: 20px">
+        <dd class="col-sm-9" style="padding-top: 20px">
             @{
                 if (Model.SecondPlayer == null) @Html.Raw("Нет игрока")
                 else @Html.DisplayFor(model => model.SecondPlayer!.Name)
             }
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Жертва
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.SecondAvatar.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Состояние на конец партии
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-9">
             @{
                 var s2 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(Model.SecondState);
                 if (s2 != null)
@@ -115,68 +115,115 @@
                     @Html.Raw("Неизвестное значение")
             }
         </dd>
-
-
-
-
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KillerWin)
+        <dt class="col-sm-3" style="padding-top: 20px">
+            Игрок 3
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KillerWin)
-        </dd>     
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SurvivorBoostNum)
+        <dd class="col-sm-9" style="padding-top: 20px">
+            @{
+                if (Model.ThirdPlayer == null)
+                    @Html.Raw("Нет игрока")
+                else
+                    @Html.DisplayFor(model => model.ThirdPlayer!.Name)
+            }
+        </dd>
+        <dt class="col-sm-3">
+            Жертва
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ThirdAvatar.Name)
+        </dd>
+        <dt class="col-sm-3">
+            Состояние на конец партии
+        </dt>
+        <dd class="col-sm-9">
+            @{
+                var s3 = EnumsTranslation.SurvivorStateTranslation.GetValueOrDefault(Model.ThirdState);
+                if (s3 != null)
+                    @Html.Raw(s3)
+                else
+                    @Html.Raw("Неизвестное значение")
+            }
+        </dd>
+        <dt class="col-sm-3" style="padding-top: 20px">
+            Количество доп. навыков у жертв
+        </dt>
+        <dd class="col-sm-9" style="padding-top: 20px">
             @Html.DisplayFor(model => model.SurvivorBoostNum)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasPlans)
+
+        <dt class="col-sm-3" style="padding-top: 50px">
+            Результаты:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasPlans)
+        <dd class="col-sm-9" style="padding-top: 50px" />
+        
+        <dt class="col-sm-3" style="padding-top: 20px">
+            Победитель
+        </dt>
+        <dd class="col-sm-9" style="padding-top: 20px">
+            @{
+                if (Model.KillerWin) @Html.Raw("Убийца")
+                else @Html.Raw("Жертвы")
+             }
+        </dd>    
+        <dt class="col-sm-3">
+            Способ победы
+        </dt>
+        <dd class="col-sm-9">
+            @{
+                var ww = EnumsTranslation.WinWayTranslation.GetValueOrDefault(Model.WinWay);
+                if (ww != null)
+                    @Html.Raw(ww)
+                else
+                    @Html.Raw("Неизвестное значение")
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GotKeys)
+        <dt class="col-sm-3">
+            Собраны 5 ключей?
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GotKeys)
+        <dd class="col-sm-9">
+            @{
+                if (Model.GotKeys) @Html.Raw("Да")
+                else @Html.Raw("Нет")
+            }    
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DoneRadio)
+        <dt class="col-sm-3">
+            Починили радио?
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DoneRadio)
+        <dd class="col-sm-9">
+            @{
+                if (Model.DoneRadio) @Html.Raw("Да")
+                else @Html.Raw("Нет")
+            }
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DonePlan)
+        <dt class = "col-sm-3">
+            Использовались в игре "Планы"?
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DonePlan)
-        </dd>               
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ThirdState)
+        <dd class = "col-sm-9">
+            @{
+                if (Model.HasPlans) @Html.Raw("Да")
+                else @Html.Raw("Нет")
+            }
+        </dd>        
+        <dt class = "col-sm-3">
+            Завершили ли выжившие 1 из "Планов"?
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ThirdState)
-        </dd>                                    
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ThirdPlayer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ThirdPlayer.Id)
-        </dd>                
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ThirdAvatar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ThirdAvatar.Id)
-        </dd>
+        <dd class = "col-sm-9">
+            @{
+                if (!Model.HasPlans) @Html.Raw("Нет")
+                else
+                {
+                    if (Model.DonePlan == null) @Html.Raw("Ошибка, неизвестное значение!")
+                    else
+                    {
+                        if ((bool)Model.DonePlan) @Html.Raw("Да")
+                        else @Html.Raw("Нет")
+                    }
+                }
+            }
+        </dd>                                                           
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Изменить</a> |
+    <a asp-action="Index">Вернуться к списку раундов</a>
 </div>
