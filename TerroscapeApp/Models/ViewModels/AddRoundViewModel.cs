@@ -30,11 +30,11 @@ namespace TerroscapeApp.Models.ViewModels
         public int FirstAvatarId { get; set; }
         public DBEnums.SurvivorStateEnum FirstState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
 
-        public int? SecondPlayerId { get; set; }
+        public int SecondPlayerId { get; set; }
         public int SecondAvatarId { get; set; }
         public DBEnums.SurvivorStateEnum SecondState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
 
-        public int? ThirdPlayerId { get; set; }
+        public int ThirdPlayerId { get; set; }
         public int ThirdAvatarId { get; set; }
         public DBEnums.SurvivorStateEnum ThirdState { get; set; } = DBEnums.SurvivorStateEnum.Alive;
 
