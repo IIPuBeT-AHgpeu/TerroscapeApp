@@ -14,6 +14,7 @@ public partial class TerroscapeStatsContext : DbContext
     public TerroscapeStatsContext(DbContextOptions<TerroscapeStatsContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Avatar> Avatars { get; set; }
@@ -214,6 +215,66 @@ public partial class TerroscapeStatsContext : DbContext
                 .HasColumnType("win_enum")
                 .HasDefaultValue(DBEnums.WinEnum.Murder);
         });
+
+        modelBuilder.Entity<Avatar>().HasData(
+            new Avatar() 
+            { 
+                Id = 1, 
+                Name = "Анна Кубрик", 
+                FirstSkill = "//", 
+                SecondSkill = "//", 
+                GameName = DBEnums.GameNameEnum.Base 
+            },
+            new Avatar() 
+            { 
+                Id = 2, 
+                Name = "Уильям Хупер", 
+                FirstSkill = "//", 
+                SecondSkill = "//", 
+                GameName = DBEnums.GameNameEnum.Base 
+            },
+            new Avatar() 
+            { 
+                Id = 3, 
+                Name = "Марко Карвен", 
+                FirstSkill = "[Предусмотрительный](Предмет): Стартовый предмет \"Аптечка Марко\"", 
+                SecondSkill = "[Предприимчивый](Особое действие): Возьмите из колоды сброса карту \"Адреналин\" или \"Транквилизатор\"", 
+                GameName = DBEnums.GameNameEnum.Base 
+            },
+            new Avatar() 
+            { 
+                Id = 4, 
+                Name = "София Скотт", 
+                FirstSkill = "//", 
+                SecondSkill = "//", 
+                GameName = DBEnums.GameNameEnum.Base 
+            },
+            new Avatar() 
+            { 
+                Id = 5, 
+                Name = "Джонсон Ниспел", 
+                FirstSkill = "[Большой рюкзак](Пассивка): Лимит планшета инвенторя - 6 карт предметов", 
+                SecondSkill = "[Опытный специалист](Пассивка): Выложите 1 дополнительный жетон шестерни, когда занимается починкой передатчика, используя \"Ящик с инструментами\"", 
+                GameName = DBEnums.GameNameEnum.Base 
+            }
+            );
+        modelBuilder.Entity<Killer>().HasData(
+            new Killer() { Id = 1, Name = "Мясник", Strength = 5, GameName = DBEnums.GameNameEnum.Base },
+            new Killer() { Id = 2, Name = "Призрак", Strength = 2, GameName = DBEnums.GameNameEnum.Base },
+            new Killer() { Id = 3, Name = "Маньяк", Strength = 4, GameName = DBEnums.GameNameEnum.Base },
+            new Killer() { Id = 4, Name = "Оборотень", Strength = 6, GameName = DBEnums.GameNameEnum.FeralInstincts },
+            new Killer() { Id = 5, Name = "Охотница", Strength = 3, GameName = DBEnums.GameNameEnum.FeralInstincts }
+            );
+        modelBuilder.Entity<Map>().HasData(
+            new Map() { Id = 1, Name = "Особняк", LocationsNum = 15 },
+            new Map() { Id = 2, Name = "Охотничий домик", LocationsNum = 15 }            
+            );
+        modelBuilder.Entity<Player>().HasData(
+            new Player() { Id = 1, Name = "Андрей", Login = "Конь" },
+            new Player() { Id = 2, Name = "Катя", Login = "Меняла" },
+            new Player() { Id = 3, Name = "Виталя", Login = "Татль" },
+            new Player() { Id = 4, Name = "Марина", Login = "Мать" }
+            );
 
         OnModelCreatingPartial(modelBuilder);
     }
